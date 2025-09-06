@@ -7,6 +7,36 @@ let force_magnitude = 0.2
 let friction_rate = 0.99
 let target_missile_count = 8
 
+function adjust_target_missile_count(event: MouseEvent) {
+  let x = event.clientX / scale
+  let y = event.clientY / scale
+  debugger
+  if (canvas.width >= canvas.height) {
+    // width screen
+    if (x < canvas.width / 2) {
+      // left side, reduce target
+      target_missile_count /= 2
+    } else {
+      // right side, increase target
+      target_missile_count *= 2
+    }
+  } else {
+    // tall screen
+    if (y < canvas.height / 2) {
+      // top side, reduce target
+      target_missile_count /= 2
+    } else {
+      // bottom side, increase target
+      target_missile_count *= 2
+    }
+  }
+  if (target_missile_count < 2) {
+    target_missile_count = 2
+  }
+}
+
+canvas.addEventListener('click', adjust_target_missile_count)
+
 function resize() {
   let rect = canvas.getBoundingClientRect()
   canvas.width = Math.round(rect.width / scale)
