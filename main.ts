@@ -2,15 +2,15 @@ import { new_oklab, new_rgb, oklab_to_rgb, range } from 'oklab.ts/dist/oklab'
 
 let canvas = document.createElement('canvas')
 
-let ratio = 4
+let scale = 4
 let force_magnitude = 0.2
 let friction_rate = 0.99
 let target_missile_count = 8
 
 function resize() {
   let rect = canvas.getBoundingClientRect()
-  canvas.width = Math.round(rect.width / ratio)
-  canvas.height = Math.round(rect.height / ratio)
+  canvas.width = Math.round(rect.width / scale)
+  canvas.height = Math.round(rect.height / scale)
 }
 window.addEventListener('resize', resize)
 
@@ -227,6 +227,6 @@ requestAnimationFrame(() => {
 Object.assign(window, {
   canvas,
   context,
-  ratio,
+  scale,
   tick,
 })
